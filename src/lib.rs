@@ -11,6 +11,15 @@ pub struct NamedRegex {
     pub name: String,
     pub regex: Regex,
 }
+
+impl NamedRegex {
+    pub fn new_from_string(name: &str, regex: &str) -> Option<Self> {
+        Some(Self {
+            name: name.into(),
+            regex: Regex::new(regex).ok()?,
+        })
+    }
+}
 /// Extracts and processes data from an input source based on regular expressions.
 ///
 /// This function takes an input data source implementing the `Read` trait and extracts specific data
